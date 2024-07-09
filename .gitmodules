@@ -1,0 +1,9 @@
+[submodule "app/src/main/cpp/external/SDL"]
+	path = app/src/main/cpp/external/SDL
+	url = https://github.com/libsdl-org/SDL.git
+[submodule "app/src/main/cpp/external/SDL_ttf"]
+	path = app/src/main/cpp/external/SDL_ttf
+	url = https://github.com/libsdl-org/SDL_ttf.git
+[submodule "app/src/main/rust/external/webrogue_rs"]
+	path = app/src/main/rust/external/webrogue_rs
+	url = https://github.com/webrogue-runtime/webrogue_rs.git

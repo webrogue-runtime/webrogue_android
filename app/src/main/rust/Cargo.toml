@@ -1,0 +1,21 @@
+[package]
+name = "webrogue_android"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "webrogue_android"
+crate-type = ["staticlib"]
+
+[features]
+default = ["backend_wasmtime"]
+backend_v8 = ["dep:webrogue_backend_v8"]
+backend_wasmtime = ["dep:webrogue_backend_wasmtime"]
+
+[dependencies]
+anyhow = { version = "1" }
+webrogue_runtime = { path = "external/webrogue_rs/crates/runtime" }
+webrogue_backend_v8 = { path = "external/webrogue_rs/crates/backend_v8", default-features = false, features = ["v8_submodule"], optional = true }
+webrogue_backend_wasmtime = { path = "external/webrogue_rs/crates/backend_wasmtime", default-features = false, optional = true }
+webrogue_wasi_sync = { path = "external/webrogue_rs/crates/wasi_sync" }
+webrogue_std_stream_sdl = { path = "external/webrogue_rs/crates/std_stream_sdl", default-features = false }
