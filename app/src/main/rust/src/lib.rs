@@ -3,7 +3,7 @@ use webrogue_runtime::WasiFactory;
 fn main() -> anyhow::Result<()> {
     let lifecycle = webrogue_runtime::Lifecycle::new();
 
-    let wasi_factory = webrogue_wasi_sync::WasiFactory {};
+    let wasi_factory = webrogue_wasi_sync::WasiFactory::new();
     let mut wasi = wasi_factory.make();
 
     wasi_factory.add_actual_dir(&mut wasi, std::env::current_dir()?, "/");
@@ -19,7 +19,10 @@ fn main() -> anyhow::Result<()> {
             lifecycle.run(
                 backend,
                 wasi,
-                include_bytes!("../external/webrogue_rs/example_mods/simple/main.wasm").to_vec(),
+                webrogue_runtime::wrapp::Reader::from_vec(
+                    include_bytes!("../external/webrogue_rs/example_apps/bin/simple.wrapp")
+                        .to_vec(),
+                )?,
             )
         }),
     );
